@@ -3,6 +3,7 @@
 	<Group Type="String">
 		<Items>
 			<Item Name="AddonConfig.Rules.38e07bc6-469a-0ff6-cf93-ebc840a83fe7.Caption" Value="Show elements: Comment" />
+			<Item Name="AddonConfig.Rules.5c154cce-0381-4d0c-e5dd-0ee0d0b411fd.Caption" Value="Make elements required: Comment" />
 			<Item Name="Caption" Value="Realty form page (Business rules)" />
 		</Items>
 	</Group>

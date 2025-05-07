@@ -3,6 +3,10 @@
 	<Group Type="String">
 		<Items>
 			<Item Name="Caption" Value="Realty list page" />
+			<Item Name="LocalizableStrings.WidgetAverageRentalPrice_template.Value" Value="{0}" />
+			<Item Name="LocalizableStrings.WidgetAverageRentalPrice_title.Value" Value="Average Rental Price" />
+			<Item Name="LocalizableStrings.WidgetAverageSalesPrice_template.Value" Value="{0}" />
+			<Item Name="LocalizableStrings.WidgetAverageSalesPrice_title.Value" Value="Average Sales Price" />
 		</Items>
 	</Group>
 </Resources>

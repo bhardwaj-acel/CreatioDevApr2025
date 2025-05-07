@@ -71,6 +71,34 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 			},
 			{
 				"operation": "insert",
+				"name": "AddRealtyVisit",
+				"values": {
+					"type": "crt.Button",
+					"caption": "#ResourceString(AddRealtyVisit_caption)#",
+					"color": "accent",
+					"disabled": false,
+					"size": "large",
+					"iconPosition": "left-icon",
+					"visible": true,
+					"clicked": {
+						"request": "crt.RunBusinessProcessRequest",
+						"params": {
+							"processName": "UsrProcess_785810d",
+							"processRunType": "ForTheSelectedPage",
+							"saveAtProcessStart": true,
+							"showNotification": true,
+							"recordIdProcessParameterName": "RealtyID"
+						}
+					},
+					"clickMode": "default",
+					"icon": "work-icon"
+				},
+				"parentName": "ActionButtonsContainer",
+				"propertyName": "items",
+				"index": 1
+			},
+			{
+				"operation": "insert",
 				"name": "PushMeButton",
 				"values": {
 					"type": "crt.Button",
@@ -139,7 +167,7 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 					"caption": "#ResourceString(RunMaxPriceServiceMenuItem_caption)#",
 					"visible": true,
 					"clicked": {
-						"request": "usr.RunWebServiceButtonRequest",
+						"request": "usr.RunWebServiceButtonRequest"
 					},
 					"icon": "bars-button-icon"
 				},
@@ -211,11 +239,63 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 			},
 			{
 				"operation": "insert",
+				"name": "GridContainer_pcnhg9x",
+				"values": {
+					"type": "crt.GridContainer",
+					"columns": [
+						"minmax(32px, 1fr)"
+					],
+					"rows": "minmax(max-content, 32px)",
+					"gap": {
+						"columnGap": "large",
+						"rowGap": "none"
+					},
+					"items": [],
+					"fitContent": true,
+					"visible": true,
+					"color": "#CBF4DB",
+					"borderRadius": "none",
+					"padding": {
+						"top": "medium",
+						"right": "medium",
+						"bottom": "medium",
+						"left": "medium"
+					},
+					"alignItems": "stretch"
+				},
+				"parentName": "SideContainer",
+				"propertyName": "items",
+				"index": 1
+			},
+			{
+				"operation": "insert",
+				"name": "CommissionPercent",
+				"values": {
+					"layoutConfig": {
+						"column": 1,
+						"row": 1,
+						"colSpan": 1,
+						"rowSpan": 1
+					},
+					"type": "crt.NumberInput",
+					"label": "$Resources.Strings.PDS_UsrOfferTypeUsrCommissionPercent_0lbtoa7",
+					"control": "$PDS_UsrOfferTypeUsrCommissionPercent_0lbtoa7",
+					"readonly": true,
+					"placeholder": "",
+					"labelPosition": "auto",
+					"tooltip": ""
+				},
+				"parentName": "GridContainer_pcnhg9x",
+				"propertyName": "items",
+				"index": 0
+			},
+			{
+				"operation": "insert",
 				"name": "Commission",
 				"values": {
 					"layoutConfig": {
 						"column": 1,
-						"row": 4,
+						"row": 2,
 						"colSpan": 1,
 						"rowSpan": 1
 					},
@@ -228,9 +308,9 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 					"placeholder": "",
 					"tooltip": ""
 				},
-				"parentName": "SideAreaProfileContainer",
+				"parentName": "GridContainer_pcnhg9x",
 				"propertyName": "items",
-				"index": 3
+				"index": 1
 			},
 			{
 				"operation": "insert",
@@ -439,28 +519,6 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 				"parentName": "City",
 				"propertyName": "listActions",
 				"index": 0
-			},
-			{
-				"operation": "insert",
-				"name": "CommissionPercent",
-				"values": {
-					"layoutConfig": {
-						"column": 2,
-						"row": 4,
-						"colSpan": 1,
-						"rowSpan": 1
-					},
-					"type": "crt.NumberInput",
-					"label": "$Resources.Strings.PDS_UsrOfferTypeUsrCommissionPercent_0lbtoa7",
-					"control": "$PDS_UsrOfferTypeUsrCommissionPercent_0lbtoa7",
-					"readonly": true,
-					"placeholder": "",
-					"labelPosition": "auto",
-					"tooltip": ""
-				},
-				"parentName": "GeneralInfoTabContainer",
-				"propertyName": "items",
-				"index": 7
 			},
 			{
 				"operation": "insert",
@@ -866,7 +924,7 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 							"MySuperValidator": {
 								"type": "usr.DGValidator",
 								"params": {
-									"minValue": 50,
+									"minValue": 0,
 									"message": "#ResourceString(PriceCannotBeLess)#"
 								}
 							}
@@ -880,7 +938,7 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 							"MySuperValidator": {
 								"type": "usr.DGValidator",
 								"params": {
-									"minValue": 10,
+									"minValue": 0,
 									"message": "#ResourceString(AreaCannotBeLess)#"
 								}
 							}
@@ -1165,7 +1223,7 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 
 						let minValue = config.minValue;
 
-						let valueIsCorrect = value >= minValue;
+						let valueIsCorrect = value > minValue;
 
 						var result;
 
